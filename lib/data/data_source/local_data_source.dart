@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:most_popular_articales/data/network/error_handler.dart';
 import 'package:most_popular_articales/domain/models/most_poplar_articles_response/PopularArticlesResponse.dart';
 
@@ -28,12 +30,10 @@ class LocalDataSourceImpl implements LocalDataSource {
   Future<void> saveHomeToCache(PopularArticlesResponse homeResponse) async {
     cacheMap[CACHE_HOME_KEY] = CachedItem(homeResponse);
   }
-
   @override
   void clearCache() {
     cacheMap.clear();
   }
-
   @override
   void removeFromCache(String key) {
     cacheMap.remove(key);

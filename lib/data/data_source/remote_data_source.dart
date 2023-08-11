@@ -7,7 +7,6 @@ abstract class RemoteDataSource {
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
-
   @override
   Future<Response> getHomeData() async {
     return await DioHelper.getData(

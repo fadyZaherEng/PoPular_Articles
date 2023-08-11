@@ -11,20 +11,15 @@ import 'package:most_popular_articales/domain/usecase/home_usecase.dart';
 final instance = GetIt.instance;
 
 Future<void> initAppModule() async {
-
   // network info
   instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()));
   // remote data source
   instance.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
-
   // local data source
   instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
-
   // repository
   instance.registerLazySingleton<Repository>(() => RepositoryImpl(instance(), instance(),instance()));
 }
-
-
 initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));

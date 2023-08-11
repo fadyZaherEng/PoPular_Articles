@@ -6,7 +6,6 @@ import 'package:most_popular_articales/domain/usecase/base_usecase.dart';
 
 class HomeUseCase implements BaseUseCase<void, PopularArticlesResponse> {
   final Repository _repository;
-
   HomeUseCase(this._repository);
 
   @override
