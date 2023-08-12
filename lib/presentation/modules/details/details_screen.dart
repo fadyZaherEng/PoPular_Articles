@@ -126,7 +126,6 @@ class DetailsScreen extends StatelessWidget {
       titleSpacing: 0,
     );
   }
-
   Widget articleImageFoundOrNot(context, ImageProvider imageProvider) {
     return ClipRRect(
       borderRadius: const BorderRadiusDirectional.all(Radius.circular(20)),
