@@ -69,22 +69,7 @@ class DetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                (article.media != null &&
-                        article.media!.isNotEmpty &&
-                        article.media![0].mediaMetadataRes != null &&
-                        article.media![0].mediaMetadataRes!.isNotEmpty &&
-                        article.media![0].mediaMetadataRes!.length == 3 &&
-                        article.media![0].mediaMetadataRes![2] != null
-                ) ? articleImage(
-                        context,
-                        NetworkImage(
-                          article.media![0].mediaMetadataRes![2].url,
-                        ),
-                      )
-                    : articleImage(
-                        context,
-                        const AssetImage("assets/images/temp.jpg"),
-                      ),
+                getArticleImage(context),
                 Center(
                   child: Text(
                     "Source: ${article.source}",
@@ -97,17 +82,19 @@ class DetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  article.media != null &&
-                          article.media!.isNotEmpty &&
-                          article.media![0].caption != ""
-                      ? article.media![0].caption
-                      : "Description Not Found",
-                  maxLines: 1000,
-                  style:  TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Colors.black.withOpacity(0.7),
+                Flexible(
+                  child: Text(
+                    article.media != null &&
+                            article.media!.isNotEmpty &&
+                            article.media![0].caption != ""
+                        ? article.media![0].caption
+                        : "Description Not Found",
+                    maxLines: 1000,
+                    style:  TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black.withOpacity(0.7),
+                    ),
                   ),
                 ),
               ],
@@ -141,8 +128,7 @@ class DetailsScreen extends StatelessWidget {
       titleSpacing: 0,
     );
   }
-
-  Widget articleImage(context, ImageProvider imageProvider) {
+  Widget articleImageFoundOrNot(context, ImageProvider imageProvider) {
     return ClipRRect(
       borderRadius: const BorderRadiusDirectional.all(Radius.circular(20)),
       child: Image(
@@ -153,4 +139,22 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
+  Widget getArticleImage(BuildContext context) {
+    return (article.media != null &&
+        article.media!.isNotEmpty &&
+        article.media![0].mediaMetadataRes != null &&
+        article.media![0].mediaMetadataRes!.isNotEmpty &&
+        article.media![0].mediaMetadataRes!.length == 3 &&
+        article.media![0].mediaMetadataRes![2] != null
+    ) ? articleImageFoundOrNot(
+      context,
+      NetworkImage(
+        article.media![0].mediaMetadataRes![2].url,
+      ),
+    )
+        : articleImageFoundOrNot(
+      context,
+      const AssetImage("assets/images/temp.jpg"),
+    );
+ }
 }

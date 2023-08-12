@@ -66,53 +66,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                (result.media != null &&
-                        result.media!.isNotEmpty &&
-                        result.media![0].mediaMetadataRes != null &&
-                        result.media![0].mediaMetadataRes!.isNotEmpty &&
-                        result.media![0].mediaMetadataRes![0] != null)
-                    ? CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 30,
-                        backgroundImage: NetworkImage(
-                            result.media![0].mediaMetadataRes![0].url),
-                      )
-                    : const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 30,
-                        backgroundImage: AssetImage("assets/images/temp.jpg"),
-                      ),
+                getArticleImage(result,context),
                 const SizedBox(
                   width: 5,
                 ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        result.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        result.byline,
-                        style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
+                getArticleTitleAndByline(result,context),
                 const SizedBox(
                   width: 5,
                 ),
@@ -124,27 +82,12 @@ class HomeScreen extends StatelessWidget {
                     ))
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 50),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Icon(
-                    Icons.calendar_month,
-                    color: Colors.grey,
-                    size: 18,
-                  ),
-                  Text(result.published_date),
-                ],
-              ),
-            ),
+            getPublishedDate(result),
           ],
         ),
       ),
     );
   }
-
   PreferredSizeWidget appBar() {
     return AppBar(
       elevation: 0.0,
@@ -165,4 +108,69 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+  Widget getPublishedDate(result) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 50),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          const Icon(
+            Icons.calendar_month,
+            color: Colors.grey,
+            size: 18,
+          ),
+          Text(result.published_date),
+        ],
+      ),
+    );
+  }
+  Widget getArticleImage(Result result, context) {
+    return  (result.media != null &&
+        result.media!.isNotEmpty &&
+        result.media![0].mediaMetadataRes != null &&
+        result.media![0].mediaMetadataRes!.isNotEmpty &&
+        result.media![0].mediaMetadataRes![0] != null)
+        ? CircleAvatar(
+      backgroundColor: Colors.white,
+      radius: 30,
+      backgroundImage: NetworkImage(
+          result.media![0].mediaMetadataRes![0].url),
+    )
+        : const CircleAvatar(
+      backgroundColor: Colors.white,
+      radius: 30,
+      backgroundImage: AssetImage("assets/images/temp.jpg"),
+    );
+  }
+  Widget getArticleTitleAndByline(Result result, context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+            result.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.black),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Text(
+            result.byline,
+            style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+ }
 }
