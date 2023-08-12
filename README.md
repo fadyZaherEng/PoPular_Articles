@@ -51,13 +51,11 @@ ___________________________________
 Explain using use case:
 Used between domain and presentation layers as Intermediate
 To ensure independence of all layers with using abstraction way by Repository interface between data and
+domain layers, use case between domain and presentation layers
+
+
 
 ![home](https://github.com/fadyZaherEng/PoPular_Articles/assets/60519197/e6a8073f-be68-457f-a493-51d1991b547c)
-
 ![details1](https://github.com/fadyZaherEng/PoPular_Articles/assets/60519197/38cc62d9-13f2-48c1-ba24-67a35f0e9454)
 ![details2](https://github.com/fadyZaherEng/PoPular_Articles/assets/60519197/9b4e8d29-6f74-482a-8ed4-1354a92c0c59)
 
-
-
-
-domain layers, use case between domain and presentation layers
