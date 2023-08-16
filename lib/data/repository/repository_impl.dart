@@ -26,8 +26,7 @@ class RepositoryImpl implements Repository {
       if (await _networkInfo.isConnected) {
         // its connected to internet, its safe to call API
         try {
-          final response = await _remoteDataSource.getHomeData();
-          PopularArticlesResponse popularArticlesResponse=PopularArticlesResponse.fromJson(response.data);
+          PopularArticlesResponse popularArticlesResponse = await _remoteDataSource.getHomeData();
           if (popularArticlesResponse.status == 'OK') {
             // success
             // return data
@@ -39,7 +38,7 @@ class RepositoryImpl implements Repository {
             // failure --return business error
             // return either left
             return Left(Failure(ApiInternalStatus.FAILURE,
-                response.statusMessage ?? ResponseMessage.DEFAULT));
+                popularArticlesResponse.status ?? ResponseMessage.DEFAULT));
           }
         } catch (error) {
           return Left(ErrorHandler

@@ -39,11 +39,19 @@ dependencies:
   bloc:
   flutter_bloc:
   conditional_builder_null_safety:
-  dio:
+
   sizer:
+  #di
   get_it:
   internet_connection_checker:
+  #either
   dartz:
+  #retrofit
+  dio:
+  retrofit:
+  #dio show response
+  pretty_dio_logger:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,7 +62,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-
+  #retrofit to generate api methods implement
+  retrofit_generator:
+  build_runner:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

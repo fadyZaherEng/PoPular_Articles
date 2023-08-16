@@ -1,20 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:most_popular_articales/app/constants.dart';
-import 'package:most_popular_articales/data/network/dio_helper.dart';
+import 'package:most_popular_articales/data/network/app_api.dart';
+import 'package:most_popular_articales/domain/models/most_poplar_articles_response/PopularArticlesResponse.dart';
 
 abstract class RemoteDataSource {
-  Future<Response> getHomeData();
+  Future<PopularArticlesResponse> getHomeData();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
+  final AppServiceClient _appServiceClient;
+
+  RemoteDataSourceImpl(this._appServiceClient);
   @override
-  Future<Response> getHomeData() async {
-    return await DioHelper.getData(
-        url: Constants.SECTION_PATH,
-        query: {
-          'api-key':'0B5thyIkVSbbRJIPL9DEkOI1AIyC3wls'
-        }
-    );
+  Future<PopularArticlesResponse> getHomeData() async {
+    return await _appServiceClient.getHomeData('0B5thyIkVSbbRJIPL9DEkOI1AIyC3wls');
   }
 
 }

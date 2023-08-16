@@ -5,7 +5,7 @@ ______________
 Used in app:
 Clean architecture using Bloc with divide app into four layers
 App -->contain constants , dependency injection, extension,root app.
-Data -->contain data source--> local , remote and network -->Dio, error handler,network connection and RepositoryImpl.
+Data -->contain data source--> local , remote and network -->Retrofit, error handler,network connection and RepositoryImpl.
 Domain -->models, use case, Repository.
 Presentation -->resources, modules
 ___________________________________
